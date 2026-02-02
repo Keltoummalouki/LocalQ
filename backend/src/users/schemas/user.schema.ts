@@ -1,15 +1,20 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
-// Définition du type User pour TypeScript
+export enum UserRole {
+  USER = 'user',
+  ADMIN = 'admin',
+}
+
 export type UserDocument = User & Document;
 
-@Schema({ timestamps: true }) // Ajoute automatiquement createdAt et updatedAt
+@Schema({ timestamps: true })
 export class User {
-  @Prop({ required: true, unique: true })
+  // L'index unique accélère la recherche par email
+  @Prop({ required: true, unique: true, index: true }) 
   email: string;
 
-  @Prop({ required: true }) 
+  @Prop({ required: false }) // Password optionnel car Google Auth n'en a pas besoin
   password: string;
 
   @Prop()
@@ -18,7 +23,11 @@ export class User {
   @Prop()
   lastName: string;
 
-  @Prop([String]) 
+  // Gestion des rôles avec valeur par défaut
+  @Prop({ type: String, enum: UserRole, default: UserRole.USER })
+  role: UserRole;
+
+  @Prop([String])
   favoriteQuestions: string[];
 }
 
