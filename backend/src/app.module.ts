@@ -30,10 +30,10 @@ import { AnswersModule } from './answers/answers.module';
 
     AuthModule,
     
-    // Limite à 10 requêtes par 60 secondes pour une même IP
+    // Limite à 100 requêtes par 60 secondes pour une même IP
     ThrottlerModule.forRoot([{
       ttl: 60000,
-      limit: 10,
+      limit: 100,
     }]),
     
     QuestionsModule,

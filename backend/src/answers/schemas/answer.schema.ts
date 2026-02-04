@@ -20,6 +20,9 @@ export class Answer {
 
   @Prop({ default: 0 })
   votes: number; 
+
+  @Prop({ type: [{ type: MongooseSchema.Types.ObjectId, ref: 'User' }] })
+  upvotes: User[];
 }
 
 export const AnswerSchema = SchemaFactory.createForClass(Answer);

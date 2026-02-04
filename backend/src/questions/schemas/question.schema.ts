@@ -21,6 +21,9 @@ export class Question {
 
   @Prop({ default: 0 })
   views: number;
+
+  @Prop({ type: [{ type: MongooseSchema.Types.ObjectId, ref: 'User' }] })
+  upvotes: User[]; // Liste des users qui ont liké
 }
 
 export const QuestionSchema = SchemaFactory.createForClass(Question);
