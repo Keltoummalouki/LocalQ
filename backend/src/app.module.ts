@@ -7,6 +7,8 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
+import { QuestionsModule } from './questions/questions.module';
+import { AnswersModule } from './answers/answers.module';
 
 @Module({
   imports: [
@@ -28,11 +30,15 @@ import { APP_GUARD } from '@nestjs/core';
 
     AuthModule,
     
-    // Limite à 10 requêtes par 60 secondes pour une même IP
+    // Limite à 100 requêtes par 60 secondes pour une même IP
     ThrottlerModule.forRoot([{
       ttl: 60000,
-      limit: 10,
+      limit: 100,
     }]),
+    
+    QuestionsModule,
+    
+    AnswersModule,
   ],
   providers: [
     AppService,

@@ -9,26 +9,26 @@
   --antigrafity-bg: #0A0A0F;
   --antigrafity-surface: #12121A;
   --antigrafity-surface-elevated: #1A1A24;
-  
+
   /* Accent Colors - Urban Warm */
   --antigrafity-accent: #E8A553;
   --antigrafity-accent-hover: #F0B76A;
   --antigrafity-accent-muted: #C88B3F;
-  
+
   /* Text Colors */
   --antigrafity-text: #F5F5F5;
   --antigrafity-text-secondary: #9CA3AF;
   --antigrafity-text-muted: #6B7280;
-  
+
   /* State Colors */
   --antigrafity-error: #EF4444;
   --antigrafity-error-bg: rgba(239, 68, 68, 0.1);
   --antigrafity-success: #10B981;
-  
+
   /* Borders */
   --antigrafity-border: #2D2D3A;
   --antigrafity-border-focus: var(--antigrafity-accent);
-  
+
   /* Legacy compatibility */
   --background: var(--antigrafity-bg);
   --foreground: var(--antigrafity-text);
@@ -82,6 +82,7 @@ body {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -92,6 +93,7 @@ body {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -102,6 +104,7 @@ body {
   from {
     transform: scaleX(0);
   }
+
   to {
     transform: scaleX(1);
   }
@@ -113,6 +116,12 @@ body {
 
 .animate-slide-up {
   animation: slideUp 0.6s ease-out forwards;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 /* ==========================================================================
