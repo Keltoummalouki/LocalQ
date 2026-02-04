@@ -1,0 +1,225 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   AntiGrafity Design System - Urban Vibes Color Palette
+   ========================================================================== */
+
+:root {
+  /* Primary Colors */
+  --antigrafity-bg: #0A0A0F;
+  --antigrafity-surface: #12121A;
+  --antigrafity-surface-elevated: #1A1A24;
+
+  /* Accent Colors - Urban Warm */
+  --antigrafity-accent: #E8A553;
+  --antigrafity-accent-hover: #F0B76A;
+  --antigrafity-accent-muted: #C88B3F;
+
+  /* Text Colors */
+  --antigrafity-text: #F5F5F5;
+  --antigrafity-text-secondary: #9CA3AF;
+  --antigrafity-text-muted: #6B7280;
+
+  /* State Colors */
+  --antigrafity-error: #EF4444;
+  --antigrafity-error-bg: rgba(239, 68, 68, 0.1);
+  --antigrafity-success: #10B981;
+
+  /* Borders */
+  --antigrafity-border: #2D2D3A;
+  --antigrafity-border-focus: var(--antigrafity-accent);
+
+  /* Legacy compatibility */
+  --background: var(--antigrafity-bg);
+  --foreground: var(--antigrafity-text);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-playfair);
+}
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+
+body {
+  background: var(--antigrafity-bg);
+  color: var(--antigrafity-text);
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Serif headings */
+.font-serif {
+  font-family: var(--font-playfair), Georgia, serif;
+}
+
+/* ==========================================================================
+   Noise Texture Overlay
+   ========================================================================== */
+
+.noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* ==========================================================================
+   Custom Animations
+   ========================================================================== */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes underlineReveal {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.6s ease-out forwards;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* ==========================================================================
+   Form Elements - AntiGrafity Style
+   ========================================================================== */
+
+/* Border-bottom only inputs */
+.input-underline {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--antigrafity-border);
+  border-radius: 0;
+  padding: 1rem 0 0.75rem;
+  color: var(--antigrafity-text);
+  transition: border-color 0.3s ease;
+}
+
+.input-underline:focus {
+  outline: none;
+  border-bottom-color: var(--antigrafity-accent);
+}
+
+.input-underline::placeholder {
+  color: var(--antigrafity-text-muted);
+}
+
+/* ==========================================================================
+   Button Styles
+   ========================================================================== */
+
+.btn-primary {
+  position: relative;
+  background: var(--antigrafity-accent);
+  color: var(--antigrafity-bg);
+  font-weight: 600;
+  padding: 0.875rem 2rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: var(--antigrafity-accent-hover);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  position: relative;
+  background: transparent;
+  border: 1px solid var(--antigrafity-border);
+  color: var(--antigrafity-text);
+  font-weight: 500;
+  padding: 0.75rem 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+  border-color: var(--antigrafity-accent);
+  color: var(--antigrafity-accent);
+}
+
+/* Underline reveal effect */
+.btn-underline {
+  position: relative;
+  background: transparent;
+  color: var(--antigrafity-text);
+  padding: 0.5rem 0;
+}
+
+.btn-underline::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--antigrafity-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.btn-underline:hover::after {
+  transform: scaleX(1);
+}
+
+/* ==========================================================================
+   Utility Classes
+   ========================================================================== */
+
+.glass-surface {
+  background: rgba(18, 18, 26, 0.8);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--antigrafity-border);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--antigrafity-accent), var(--antigrafity-accent-hover));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
